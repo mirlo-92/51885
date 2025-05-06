@@ -1,5 +1,5 @@
-import SimpleLangVisitor from './generated/SimpleLangVisitor.js';
-import SimpleLangParser from './generated/SimpleLangParser.js';
+import SimpleLangVisitor from './generated/CustomCalculatorVisitor.js';
+import SimpleLangParser from './generated/CalculatorParser.js';
 
 class CustomSimpleLangVisitor extends SimpleLangVisitor {
     constructor() {

@@ -1,5 +1,5 @@
-import SimpleLangLexer from "./generated/SimpleLangLexer.js";
-import SimpleLangParser from "./generated/SimpleLangParser.js";
+import SimpleLangLexer from "./generated/CalculatorLexer.js";
+import SimpleLangParser from "./generated/CalculatorParser.js";
 import CustomSimpleLangVisitor from "./CustomSimpleLangVisitor.js";
 import antlr4, { CharStreams, CommonTokenStream } from "antlr4";
 import readline from 'readline';
