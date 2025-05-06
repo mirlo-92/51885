@@ -1,4 +1,4 @@
-// Generated from c://Users//Mariana//OneDrive - docentes.frm.utn.edu.ar//SSL//2025//ANTLR4//antlr-calculator-project//Calculator.g4 by ANTLR 4.13.2
+// Generated from c:/Users/pablo/OneDrive/Escritorio/UTN/2DO AÑO/SINTAXIS Y SEMANTICA DE LOS LENGUAJES/PRACTICA/analizador/ssl-antlr-calculator/Calculator.g4 by ANTLR 4.13.2
 // jshint ignore: start
 import antlr4 from 'antlr4';
 
@@ -14,12 +14,21 @@ export default class CalculatorListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by CalculatorParser#printExpr.
-	enterPrintExpr(ctx) {
+	// Enter a parse tree produced by CalculatorParser#stat.
+	enterStat(ctx) {
 	}
 
-	// Exit a parse tree produced by CalculatorParser#printExpr.
-	exitPrintExpr(ctx) {
+	// Exit a parse tree produced by CalculatorParser#stat.
+	exitStat(ctx) {
+	}
+
+
+	// Enter a parse tree produced by CalculatorParser#decl.
+	enterDecl(ctx) {
+	}
+
+	// Exit a parse tree produced by CalculatorParser#decl.
+	exitDecl(ctx) {
 	}
 
 
@@ -32,57 +41,12 @@ export default class CalculatorListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by CalculatorParser#blank.
-	enterBlank(ctx) {
+	// Enter a parse tree produced by CalculatorParser#expr.
+	enterExpr(ctx) {
 	}
 
-	// Exit a parse tree produced by CalculatorParser#blank.
-	exitBlank(ctx) {
-	}
-
-
-	// Enter a parse tree produced by CalculatorParser#parens.
-	enterParens(ctx) {
-	}
-
-	// Exit a parse tree produced by CalculatorParser#parens.
-	exitParens(ctx) {
-	}
-
-
-	// Enter a parse tree produced by CalculatorParser#MulDiv.
-	enterMulDiv(ctx) {
-	}
-
-	// Exit a parse tree produced by CalculatorParser#MulDiv.
-	exitMulDiv(ctx) {
-	}
-
-
-	// Enter a parse tree produced by CalculatorParser#AddSub.
-	enterAddSub(ctx) {
-	}
-
-	// Exit a parse tree produced by CalculatorParser#AddSub.
-	exitAddSub(ctx) {
-	}
-
-
-	// Enter a parse tree produced by CalculatorParser#id.
-	enterId(ctx) {
-	}
-
-	// Exit a parse tree produced by CalculatorParser#id.
-	exitId(ctx) {
-	}
-
-
-	// Enter a parse tree produced by CalculatorParser#int.
-	enterInt(ctx) {
-	}
-
-	// Exit a parse tree produced by CalculatorParser#int.
-	exitInt(ctx) {
+	// Exit a parse tree produced by CalculatorParser#expr.
+	exitExpr(ctx) {
 	}
 
 

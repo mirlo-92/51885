@@ -1,29 +1,27 @@
 grammar Calculator;
 
+//Lexemas
+ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_')*;
+NUMBER: ('0'..'9')+;
+WS: [ \t]+ -> skip;
+
 //Gramatica
 prog: stat+;
 
-stat: expr NEWLINE?              #printExpr
-    | ID EQ expr NEWLINE?        #assign
-    | NEWLINE                   #blank
+stat: decl
+    | assign
+    | expr ';'
     ;
 
-expr: expr op=(MUL|DIV) expr    #MulDiv
-    | expr op=(ADD|SUB) expr    #AddSub
-    | INT                       #int
-    | ID                        #id
-    | LPAREN expr RPAREN        #parens
+decl: ('let' | 'var') ID ('=' expr)? ';'
     ;
 
-//Lexemas
-MUL : '*';
-DIV : '/';
-ADD : '+';
-SUB : '-';
-EQ: '=';
-ID : [a-zA-Z]+;
-INT : [0-9];
-LPAREN : '(';
-RPAREN : ')';
-NEWLINE:'\r'? '\n';
-WS: [ \t]+ -> skip;
+assign: ID '=' expr ';'
+    ;
+
+expr: expr ('*' | '/') expr
+    | expr ('+' | '-') expr
+    | '(' expr ')'
+    | ID
+    | NUMBER
+    ;
