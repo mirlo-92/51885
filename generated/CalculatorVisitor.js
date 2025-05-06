@@ -24,8 +24,8 @@ export default class CalculatorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by CalculatorParser#assign.
-	visitAssign(ctx) {
+	// Visit a parse tree produced by CalculatorParser#exprStmt.
+	visitExprStmt(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

@@ -1,26 +1,51 @@
 grammar Calculator;
 
-//Lexemas
-ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_')*;
-NUMBER: ('0'..'9')+;
-WS: [ \t]+ -> skip;
+// Reglas léxicas (tokens)
+VAR     : 'var';
+LET     : 'let';
+CONST   : 'const';
+IF      : 'if';
+ELSE    : 'else';
+WHILE   : 'while';
+FOR     : 'for';
+RETURN  : 'return';
 
-//Gramatica
-prog: stat+;
+SEMI    : ';';
+ASSIGN  : '=';
+PLUS    : '+';
+MINUS   : '-';
+MULT    : '*';
+DIV     : '/';
 
-stat: decl
-    | assign
-    | expr ';'
+LPAREN  : '(';
+RPAREN  : ')';
+LBRACE  : '{';
+RBRACE  : '}';
+
+NUMBER  : [0-9]+;
+ID      : [a-zA-Z_][a-zA-Z_0-9]*;
+
+WS      : [ \t\r\n]+ -> skip; // Ignorar espacios y saltos de línea
+
+// Reglas sintácticas mínimas
+prog:   stat+ ;
+
+stat
+    : decl
+    | exprStmt
     ;
 
-decl: ('let' | 'var') ID ('=' expr)? ';'
+decl
+    : (VAR | LET | CONST) ID ASSIGN expr SEMI
     ;
 
-assign: ID '=' expr ';'
+exprStmt
+    : expr SEMI
     ;
 
-expr: expr ('*' | '/') expr
-    | expr ('+' | '-') expr
+expr
+    : expr op=('+'|'-') expr
+    | expr op=('*'|'/') expr
     | '(' expr ')'
     | ID
     | NUMBER

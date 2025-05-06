@@ -32,12 +32,12 @@ export default class CalculatorListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by CalculatorParser#assign.
-	enterAssign(ctx) {
+	// Enter a parse tree produced by CalculatorParser#exprStmt.
+	enterExprStmt(ctx) {
 	}
 
-	// Exit a parse tree produced by CalculatorParser#assign.
-	exitAssign(ctx) {
+	// Exit a parse tree produced by CalculatorParser#exprStmt.
+	exitExprStmt(ctx) {
 	}
 
 

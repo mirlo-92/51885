@@ -1,4 +1,4 @@
-import SimpleLangVisitor from './generated/CustomCalculatorVisitor.js';
+import SimpleLangVisitor from './generated/CalculatorVisitor.js';
 import SimpleLangParser from './generated/CalculatorParser.js';
 
 class CustomSimpleLangVisitor extends SimpleLangVisitor {
