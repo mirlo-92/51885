@@ -17,7 +17,7 @@ Utilizando **ANTLR4** con **JavaScript**, este proyecto implementa un analizador
 <salida>       ::= "imprimir" "(" <cadena> ")" ;
 <condición>    ::= "verdadero" | "falso" ;
 <cadena>       ::= """ { <carácter> } """ ;
-<carácter>     ::= <letra> | <dígito> | <símbolo> ;
+<carácter>     ::= <letra> | <dígito> | ' ' | <símbolo> ;
 <letra>        ::= "a" | "b" | ... | "Z" ;
 <dígito>       ::= "0" | "1" | ... | "9" ;
 <símbolo>      ::= ":" | "." | "!" | "?" | "," ;
@@ -29,16 +29,16 @@ Utilizando **ANTLR4** con **JavaScript**, este proyecto implementa un analizador
 ### El analizador realiza las siguientes tareas:
 
 - Análisis léxico y sintáctico:
--- Detecta errores léxicos o sintácticos en el archivo fuente. En caso de error, informa la línea y el motivo del fallo.
+    - Detecta errores léxicos o sintácticos en el archivo fuente. En caso de error, informa la línea y el motivo del fallo.
 
 - Tabla de lexemas-tokens:
--- Genera una tabla con los lexemas y sus respectivos tokens reconocidos.
+    - Genera una tabla con los lexemas y sus respectivos tokens reconocidos.
 
 - Árbol de análisis sintáctico:
--- Construye y muestra el árbol sintáctico concreto del código fuente.
+    - Construye y muestra el árbol sintáctico concreto del código fuente.
 
 - Interpretación:
--- Traduce el código fuente al lenguaje JavaScript y lo ejecuta como un intérprete básico.
+    - Traduce el código fuente al lenguaje JavaScript y lo ejecuta como un intérprete básico.
 
 ---
 
@@ -107,17 +107,17 @@ En el caso de que no se encuentren errores de ningún tipo, el programa devolver
 ---
 
 ## ⚠️ Posibles mensajes de errores del programa
-El analizador no ha podido leer el archivo *input.txt*:
+- El analizador no ha podido leer el archivo *input.txt*:
 ```bash
 No se pudo leer el archivo 'input.txt'.
 ```
 
-Ante la pregunta *"¿Querés analizar el contenido de 'input.txt'? (s/n): "*, si se ingresa cualquier otra cosa que no sea *s* o *n* (admite mayusculas):
+- Ante la pregunta *"¿Querés analizar el contenido de 'input.txt'? (s/n): "*, si se ingresa cualquier otra cosa que no sea *s* o *n* (admite mayusculas):
 ```bash
 Opción no válida. Saliendo...
 ```
 
-Ante la pregunta *"¿Querés analizar el contenido de 'input.txt'? (s/n): "*, si no se ingresa nada y se da enter:
+- Ante la pregunta *"¿Querés analizar el contenido de 'input.txt'? (s/n): "*, si no se ingresa nada y se da enter:
 ```bash
 Entrada vacía. Saliendo...
 ```
@@ -125,14 +125,14 @@ Entrada vacía. Saliendo...
 ---
 
 ## ✅ Ejemplo Funcional
-Código de entrada:
+- Código fuente:
 ```bash
 mientras verdadero{
     imprimir("43");
 };
 ```
 
-Tabla de Lexemas y Tokens:
+- Tabla de Lexemas y Tokens:
 ```bash
 --------------------------------------------------
 | Lexema         | Token                         |
@@ -153,7 +153,7 @@ Tabla de Lexemas y Tokens:
 --------------------------------------------------
 ```
 
-Arbol de derivación:
+- Árbol de derivación:
 ```bash
 programa
 └── instruccion
@@ -186,12 +186,12 @@ while (true) {
 ```
 
 ## ❌ Ejemplo Fallido
-Código de entrada:
+- Código fuente:
 ```bash
 mientras imprimir("Hola mundo!");
 ```
 
-Tabla de Lexemas y Tokens:
+- Tabla de Lexemas y Tokens:
 ```bash
 --------------------------------------------------
 | Lexema         | Token                         |
