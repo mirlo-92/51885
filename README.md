@@ -25,7 +25,7 @@ Utilizando **ANTLR4** con **JavaScript**, este proyecto implementa un analizador
 
 ---
 
-## ✅ Funcionalidades implementadas
+## 🛠️ Funcionalidades implementadas
 ### El analizador realiza las siguientes tareas:
 
 - Análisis léxico y sintáctico:
