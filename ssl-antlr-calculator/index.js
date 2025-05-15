@@ -91,7 +91,7 @@ async function main() {
                     break;
 
         // Si la respuesta no es válida, muestra un mensaje de error y cierra el programa
-        default: console.error(`/n ${YELLOW}Opción no válida. Saliendo...${RESET} \n`);
+        default: console.error(`\n ${YELLOW}Opción no válida. Saliendo...${RESET} \n`);
                     rl.close();
                     return;
     }

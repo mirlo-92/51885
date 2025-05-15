@@ -1,1 +1,11 @@
-imprimir("Este es un mensaje de ejemplo");
+mientras verdadero{
+    imprimir("Este es un mensaje de ejemplo");
+    imprimir("Otro mensaje de ejemplo");
+};
+
+mientras falso {
+    imprimir("Mensaje falso");
+};
+
+
+
