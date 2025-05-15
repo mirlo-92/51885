@@ -60,6 +60,8 @@ npm install
 ```
 
 ### 4. Ejecutar el programa
+- Buscar la carpeta del repositorio clonado, click derecho > Abrir con Code (VS Code)
+- En VS Code, abrir cualquiera de los archivos .txt Caso1, Caso2, Caso3 o Caso4, copiar el contenido y pegarlo en el archivo input.txt
 - Abrir una terminal (como administrador)
 - Dirigirse a la carpeta raiz del repositorio clonado usando el comando **cd**
 
@@ -80,11 +82,11 @@ Una vez ejecutado con **npm start**, el programa te preguntará si quieres que a
 ¿Querés analizar el contenido de 'input.txt'? (s/n):
 ```
 
-Con **s** el programa analizará el código presente en el archivo *input.txt*.
-Con **n** el programa te pedirá que ingreses el código que quieres analizar *(⚠️ ATENCION: el código ingresado será en una sola línea. Si querés que el programa analice el código formateado en varias líneas e indentado, deberás ingresarlo en el archivo input.txt desde VS Code)*
+- Con **s** el programa analizará el código presente en el archivo *input.txt*.
+- Con **n** el programa te pedirá que ingreses el código que quieres analizar *(⚠️ ATENCION: el código ingresado será en una sola línea. Si querés que el programa analice el código formateado en varias líneas e indentado, deberás ingresarlo en el archivo input.txt desde VS Code)*
 
 ### 📝 Para tener en cuenta
-De acuerdo a las reglas de derivación de la gramática que conduce este analizador, el mismo no soporta algunas palabras del idioma español, ya que estas pueden tener símbolos como tildes o el caracter ñ, que activarán el mensaje de error léxico, al no reconocer estos símbolos como parte del lenguaje generado por la gramática.
+De acuerdo con las reglas de derivación de la gramática que conduce este analizador, el mismo no soporta algunas palabras del idioma español, ya que estas pueden tener símbolos como tildes o el caracter ñ, que activarán el mensaje de error léxico, al no reconocer estos símbolos como parte del lenguaje generado por la gramática.
 
 ### Ejemplo de código en una sola línea
 ```bash
