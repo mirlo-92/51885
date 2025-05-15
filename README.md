@@ -81,7 +81,7 @@ Una vez ejecutado con **npm start**, el programa te preguntará si quieres que a
 ```
 
 Con **s** el programa analizará el código presente en el archivo *input.txt*.
-Con **n** el programa te pedirá que ingreses el código que quieres analizar *(ATENCION: el código ingresado será en una sola línea. Si querés que el programa analice el código formateado en varias líneas e indentado, deberás ingresarlo en el archivo input.txt desde VS Code)*
+Con **n** el programa te pedirá que ingreses el código que quieres analizar *(⚠️ ATENCION: el código ingresado será en una sola línea. Si querés que el programa analice el código formateado en varias líneas e indentado, deberás ingresarlo en el archivo input.txt desde VS Code)*
 
 ### Ejemplo de código en una sola línea
 ```bash
