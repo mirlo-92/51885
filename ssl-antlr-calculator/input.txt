@@ -1,0 +1,1 @@
+imprimir("Este es un mensaje de ejemplo");
