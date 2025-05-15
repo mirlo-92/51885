@@ -1,8 +1,2 @@
-mientras verdadero{
-    imprimir("Hola mundo!");
-    imprimir("Otro mensaje!");
-};
-
-mientras falso{
-    imprimir("Adios mundo!");
-};
+imprimir("Hola mundo!");
+imprimir("Otro mensaje!");

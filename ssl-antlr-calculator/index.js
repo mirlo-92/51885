@@ -36,29 +36,22 @@ function imprimirArbolVisual(nodo, parser, prefijo = "", hoja = true, raiz = tru
     const conector = raiz ? "" : (hoja ? "└── " : "├── ");
     let linea = prefijo + conector;
 
-    // Si el nodo tiene hijos, imprime el nombre de la regla
     if (nodo.children) {
         linea += LIGHT_BLUE + ruleName + RESET;
         console.log(linea);
-
         const nuevoPrefijo = prefijo + (raiz ? "" : (hoja ? "    " : "│   "));
         const total = nodo.children.length;
         nodo.children.forEach((child, index) => {
             const esUltimo = index === total - 1;
             imprimirArbolVisual(child, parser, nuevoPrefijo, esUltimo, false);
         });
-    }
-
-    // Si el nodo no tiene hijos, imprime el texto del token
-    else {
+    } else {
         const text = nodo.getText().replace(/\n/g, "\\n");
         const tokenName = parser.symbolicNames?.[nodo.symbol?.type] || "TOKEN";
         linea += `${GREEN}'${text}'${RESET} ${GRAY}[${tokenName}]${RESET}`;
         console.log(linea);
     }
 }
-
-
 
 // Función principal
 async function main() {
@@ -67,53 +60,44 @@ async function main() {
         output: process.stdout
     });
 
-    // Pregunta al usuario si quiere analizar el contenido de 'input.txt'
     const preguntar = (pregunta) => new Promise(resolve => rl.question(pregunta, resolve));
-
     let input;
     const respuesta = (await preguntar("¿Querés analizar el contenido de 'input.txt'? (s/n): ")).trim().toLowerCase();
 
     switch (respuesta) {
+        case 's':
+            try {
+                input = fs.readFileSync('input.txt', 'utf8');
+            } catch (err) {
+                console.error(`\n ${RED}No se pudo leer el archivo 'input.txt'.${RESET} \n`);
+                rl.close();
+                return;
+            }
+            break;
 
-        // Si la respuesta es 's', lee el archivo 'input.txt'
-        case 's': try {
-                    input = fs.readFileSync('input.txt', 'utf8');
-                    }
-                    catch (err) {
-                        console.error(`\n ${RED}No se pudo leer el archivo 'input.txt'.${RESET} \n`);
-                        rl.close();
-                        return;
-                    }
-                    break;
+        case 'n':
+            input = await preguntar("Ingrese una cadena: ");
+            break;
 
-        // Si la respuesta es 'n', pide al usuario que ingrese una cadena
-        case 'n': input = await preguntar("Ingrese una cadena: ");
-                    break;
-
-        // Si la respuesta no es válida, muestra un mensaje de error y cierra el programa
-        default: console.error(`\n ${YELLOW}Opción no válida. Saliendo...${RESET} \n`);
-                    rl.close();
-                    return;
+        default:
+            console.error(`\n ${YELLOW}Opción no válida. Saliendo...${RESET} \n`);
+            rl.close();
+            return;
     }
 
-    // Verifica si la entrada está vacía
-    // Si la entrada es una cadena vacía, muestra un mensaje y cierra el programa
     if (input.trim() === "") {
         console.error(`\n ${YELLOW}Entrada vacía. Saliendo...${RESET} \n`);
         rl.close();
         return;
     }
 
-    // Si la entrada no es vacía, continúa con el análisis
     rl.close();
     console.log("\nEntrada recibida:\n" + input);
 
-    // Verifica si la entrada está vacía
     const erroresLexicos = [];
     let inputStream = CharStreams.fromString(input);
     let lexer = new SimpleLangLexer(inputStream);
 
-    // Configura el analizador léxico para manejar errores
     lexer.removeErrorListeners();
     lexer.addErrorListener({
         syntaxError(recognizer, offendingSymbol, line, column, msg, e) {
@@ -122,19 +106,16 @@ async function main() {
         }
     });
 
-    // Genera el flujo de tokens
     lexer.reset();
     const tokenStream1 = new antlr4.CommonTokenStream(lexer);
     tokenStream1.fill();
     const tokens = tokenStream1.tokens;
 
-    // Verifica si hay errores léxicos
     if (erroresLexicos.length > 0) {
         erroresLexicos.forEach(e => console.error(e));
         return;
     }
 
-    // Si no hay errores léxicos, muestra la tabla de lexemas y tokens
     console.log("\nTabla de Tokens y Lexemas:");
     console.log("--------------------------------------------------");
     console.log("| Lexema         | Token                         |");
@@ -149,16 +130,12 @@ async function main() {
     }
     console.log("--------------------------------------------------");
 
-    // Reinicia el analizador léxico y el flujo de tokens
     inputStream = CharStreams.fromString(input);
     lexer = new SimpleLangLexer(inputStream);
     const tokenStream = new CommonTokenStream(lexer);
     const parser = new SimpleLangParser(tokenStream);
 
-    // Configura el analizador sintáctico para manejar errores
     let erroresSintacticos = 0;
-
-    // Elimina los listeners de error predeterminados y agrega un listener personalizado que traduce los mensajes de error al español
     parser.removeErrorListeners();
     parser.addErrorListener({
         syntaxError(recognizer, offendingSymbol, line, column, msg, e) {
@@ -173,13 +150,9 @@ async function main() {
         }
     });
 
-    // Genera el árbol de análisis sintáctico
     const tree = parser.programa();
-
-    // Si hay errores sintácticos, no se continúa con la evaluación
     if (erroresSintacticos > 0) return;
 
-    // Si no hay errores, muestra el árbol de derivación
     console.log("\nEntrada válida.");
     console.log("\nÁrbol de derivación:");
     imprimirArbolVisual(tree, parser);
@@ -187,9 +160,28 @@ async function main() {
     const visitor = new CustomSimpleLangVisitor();
     const result = visitor.visit(tree);
 
-    // Muestra el resultado de la traducción a JavaScript
     console.log("\nTraducción a JavaScript:\n");
     console.log(result);
+
+    // Evita bucle infinito real y muestra el mensaje
+  let codigoAEjecutar = result;
+if (codigoAEjecutar.includes("while (true)")) {
+    codigoAEjecutar = codigoAEjecutar.replace(
+        /while \(true\) \{([\s\S]*?)\}/g,
+        (match, p1) => {
+            return `{\n${p1}\nconsole.log(\`${RED}CUIDADO! Bucle infinito detenido${RESET}\`);\n}`;
+        }
+    );
+}
+
+
+    try {
+        console.log("\nResultado de la ejecución:\n");
+        eval(codigoAEjecutar);
+    } catch (error) {
+        console.error(`${RED}Error durante la ejecución del código traducido:${RESET}`);
+        console.error(error.message);
+    }
 }
 
 // Ejecuta la función principal

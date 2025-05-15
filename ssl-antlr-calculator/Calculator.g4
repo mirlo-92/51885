@@ -24,15 +24,15 @@ programa        :instruccion+
 instruccion     :bucle | salida
                 ;
 
-bucle           :MIENTRAS ESPACIO? condicion ESPACIO? '{' instruccion+ ESPACIO?'}' PUNTO_Y_COMA?
+bucle           :'mientras' ESPACIO? condicion ESPACIO? '{' instruccion+ ESPACIO?'}' PUNTO_Y_COMA?
                 ;
 
-salida          :IMPRIMIR ESPACIO? '(' cadena ')' ESPACIO? ';'
+salida          :'imprimir' ESPACIO? '(' cadena ')' ESPACIO? ';'
                 ;
 
-condicion       :VERDADERO | FALSO;
+condicion       :'verdadero' | 'falso';
 
-cadena          :COMILLAS caracter+ COMILLAS
+cadena          :'"' caracter+ '"'
                 ;
 
 caracter        :LETRA
