@@ -44,10 +44,10 @@ Utilizando **ANTLR4** con **JavaScript**, este proyecto implementa un analizador
 
 ## 🚀 Cómo usar este proyecto
 ### 1. Requisitos previos
--- [VS Code](https://code.visualstudio.com/Download) (IDE para editar y manipular código)
--- [Node.js](https://nodejs.org/es/download) (para ejecutar JavaScript fuera del navegador)
--- [ANTLR4 grammar syntax support]() (como extensión en VS Code)
--- [Java (JRE o JDK)](https://www.oracle.com/java/technologies/downloads/?er=221886) (necesario para ANTLR)
+    - [VS Code](https://code.visualstudio.com/Download) (IDE para editar y manipular código)
+    - [Node.js](https://nodejs.org/es/download) (para ejecutar JavaScript fuera del navegador)
+    - [ANTLR4 grammar syntax support]() (como extensión en VS Code)
+    - [Java (JRE o JDK)](https://www.oracle.com/java/technologies/downloads/?er=221886) (necesario para ANTLR)
 
 ### 2. Clonar el repositorio
 ```bash
