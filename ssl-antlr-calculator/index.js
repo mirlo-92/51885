@@ -174,7 +174,7 @@ if (codigoAEjecutar.includes("while (true)")) {
     );
 }
 
-
+    // Ejecuta el código traducido
     try {
         console.log("\nResultado de la ejecución:\n");
         eval(codigoAEjecutar);
