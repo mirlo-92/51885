@@ -1,1 +1,1 @@
-imprimir("Hola mundo!");
+imprimir("Hola mundo!")
