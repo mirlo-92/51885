@@ -111,6 +111,16 @@ En el caso de que no se encuentren errores de ningún tipo, el programa devolver
 
 ---
 
+### 🚨 Bucles infinitos
+A la hora de ingresar código para analizar, ten presente que puedes estar ingresando código que entre en un bucle infinito a la hora de que se ejecute el codigo traducido en JavaScript. El analizador está preparado para detener cualquier ejecución de este tipo; detendrá el bucle y te mostrará un mensaje de advertencia:
+```bash
+CUIDADO! Bucle infinito detenido
+```
+
+📝 El programa trae por defecto, un ejemplo de bucle infinito en el archivo input.txt, ya listo para ser analizado y poder ver cómo el programa reacciona frente a estos casos.
+
+---
+
 ## ⚠️ Posibles mensajes de errores del programa
 - El analizador no ha podido leer el archivo *input.txt*:
 ```bash
