@@ -96,13 +96,9 @@ mientras verdadero {imprimir("Este es un mensaje de ejemplo"); imprimir("Otro me
 ### Ejemplo de código multilínea indentado
 ```bash
 mientras verdadero{
-    imprimir("Este es un mensaje de ejemplo");
-    imprimir("Otro mensaje de ejemplo");
-};
-
-mientras falso {
-    imprimir("Mensaje falso");
-};
+    imprimir("Este es un mensaje de ejemplo")
+    imprimir("Otro mensaje de ejemplo")
+}
 ```
 
 Una vez dado el código, el programa lo analizará, en búsqueda de errores léxicos y sintácticos. Deteniéndose si encontrase uno, otro o ambos, e indicando en qué línea y columna se encuentra el error, junto con un breve mensaje descriptivo del mismo.
@@ -111,8 +107,18 @@ En el caso de que no se encuentren errores de ningún tipo, el programa devolver
 
 ---
 
+### 🚨 Bucles infinitos
+A la hora de ingresar código para analizar, ten presente que puedes estar ingresando código que entre en un bucle infinito a la hora de que se ejecute el código traducido en JavaScript. No te preocupes, el analizador está preparado para detener cualquier ejecución de este tipo; detendrá el bucle y te mostrará un mensaje de advertencia:
+```bash
+CUIDADO! Bucle infinito detenido
+```
+
+📝 El programa trae por defecto, un ejemplo de bucle infinito en el archivo input.txt, ya listo para ser analizado y poder ver cómo el programa reacciona frente a estos casos.
+
+---
+
 ## ⚠️ Posibles mensajes de errores del programa
-- El analizador no ha podido leer el archivo *input.txt*:
+- Si el analizador no ha podido leer el archivo *input.txt*:
 ```bash
 No se pudo leer el archivo 'input.txt'.
 ```
@@ -122,7 +128,7 @@ No se pudo leer el archivo 'input.txt'.
 Opción no válida. Saliendo...
 ```
 
-- Ante la pregunta *"¿Querés analizar el contenido de 'input.txt'? (s/n): "*, si no se ingresa nada y se da enter:
+- Si no se ingresa ningún código fuente para analizar:
 ```bash
 Entrada vacía. Saliendo...
 ```
@@ -133,8 +139,8 @@ Entrada vacía. Saliendo...
 - Código fuente:
 ```bash
 mientras verdadero{
-    imprimir("43");
-};
+    imprimir("43")
+}
 ```
 
 - Tabla de Lexemas y Tokens:
@@ -149,12 +155,11 @@ mientras verdadero{
 | imprimir       | IMPRIMIR                      |
 | (              | PAREN_IZQ                     |
 | "              | COMILLAS                      |
-| 43             | DIGITO                        |
+| 4              | DIGITO                        |
+| 3              | DIGITO                        |
 | "              | COMILLAS                      |
 | )              | PAREN_DER                     |
-| ;              | PUNTO_Y_COMA                  |
 | }              | LLAVE_CERRADA                 |
-| ;              | PUNTO_Y_COMA                  |
 --------------------------------------------------
 ```
 
@@ -175,25 +180,35 @@ programa
         │       ├── cadena
         │       │   ├── '"' [COMILLAS]
         │       │   ├── caracter
-        │       │   │   └── '43' [DIGITO]
+        │       │   │   └── '4' [DIGITO]
+        │       │   ├── caracter
+        │       │   │   └── '3' [DIGITO]
         │       │   └── '"' [COMILLAS]
-        │       ├── ')' [PAREN_DER]
-        │       └── ';' [PUNTO_Y_COMA]
-        ├── '}' [LLAVE_CERRADA]
-        └── ';' [PUNTO_Y_COMA]
+        │       └── ')' [PAREN_DER]
+        └── '}' [LLAVE_CERRADA]
 ```
         
-Traduccion a JavaScript:
+- Traducción a JavaScript:
 ```bash
 while (true) {
     console.log("43");
 }
 ```
 
+- Resultado de la traducción:
+```bash
+43
+```
+
+- Mensaje de advertencia de bucle infinito:
+```bash
+CUIDADO! Bucle infinito detenido
+```
+
 ## ❌ Ejemplo Fallido
 - Código fuente:
 ```bash
-mientras imprimir("Hola mundo!");
+mientras imprimir("Hola mundo!")
 ```
 
 - Tabla de Lexemas y Tokens:
@@ -206,20 +221,26 @@ mientras imprimir("Hola mundo!");
 | imprimir       | IMPRIMIR                      |
 | (              | PAREN_IZQ                     |
 | "              | COMILLAS                      |
-| Hola           | LETRA                         |
+| H              | LETRA                         |
+| o              | LETRA                         |
+| l              | LETRA                         |
+| a              | LETRA                         |
 |                | ESPACIO                       |
-| mundo          | LETRA                         |
+| m              | LETRA                         |
+| u              | LETRA                         |
+| n              | LETRA                         |
+| d              | LETRA                         |
+| o              | LETRA                         |
 | !              | SIMBOLO                       |
 | "              | COMILLAS                      |
 | )              | PAREN_DER                     |
-| ;              | PUNTO_Y_COMA                  |
 --------------------------------------------------
 ```
 
 Mensajes de error:
 ```bash
 Error de sintaxis en la línea 1, columna 9: entrada no coincidente 'imprimir' se espera {'verdadero', 'falso'}
-Error de sintaxis en la línea 1, columna 33: entrada extraña 'final de la cadena' se espera {'imprimir', 'mientras', '}', ' '}
+Error de sintaxis en la línea 1, columna 32: entrada extraña 'final de la cadena' se espera {'imprimir', 'mientras', ' ', '}'}
 ```
 
  ⚠️ ATENCIÓN: En este ejemplo fallido, el programa devuelve la tabla de Lexemas y Tokens porque el código de entrada no posee ningún error del tipo Léxico. En caso de que la entrada tuviese un error léxico, el analizador no mostrará la tabla; simplemente devolverá, por ejemplo, un mensaje del tipo:

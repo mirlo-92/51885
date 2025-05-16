@@ -1,2 +1,7 @@
-imprimir("Hola mundo!");
-imprimir("Otro mensaje!");
+mientras verdadero{
+  imprimir("Hola mundo!")
+}
+
+mientras falso {
+  imprimir("Adios mundo!")
+}
