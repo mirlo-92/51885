@@ -1,7 +1,4 @@
 mientras verdadero{
-  imprimir("Hola mundo!")
-}
-
-mientras falso {
-  imprimir("Adios mundo!")
+    imprimir("Este es un mensaje de ejemplo")
+    imprimir("Otro mensaje de ejemplo")
 }
